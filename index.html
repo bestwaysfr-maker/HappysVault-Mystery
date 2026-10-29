@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HappysVault Mystery Pack</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#">
+      <div class="brand-icon"><span>H</span><span>V</span><i>✦</i></div>
+      <div class="brand-name">HappysVault<small>MYSTERY PACKS</small></div>
+    </a>
+    <div class="credit-pill">
+      <span class="credit-dot"></span>
+      <span>DEMO CREDITS</span>
+      <strong id="credits">100</strong>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span class="status-dot"></span> THE VAULT IS OPEN</div>
+      <h1>Find your next<br><span>great pull.</span></h1>
+      <p>Open a mystery pack and discover what's inside. A premium card-opening experience using virtual credits.</p>
+    </section>
+
+    <section class="main-grid">
+      <section class="opening-panel">
+        <div class="panel-top">
+          <span>01 / MYSTERY PACK</span>
+          <span class="demo-label">DEMO MODE</span>
+        </div>
+
+        <div class="pack-stage" id="packStage">
+          <div class="stage-glow"></div>
+
+          <button class="pack" id="packButton" aria-label="Open mystery pack">
+            <div class="pack-brand">HAPPYSVAULT</div>
+            <div class="pack-emblem">
+              <span>H</span><span>V</span><i>✦</i>
+            </div>
+            <div class="pack-title">MYSTERY<br>PACK</div>
+            <div class="pack-divider"></div>
+            <div class="pack-subtitle">ONE CARD. ONE SURPRISE.</div>
+            <div class="pack-bottom-mark">HV · SERIES 01</div>
+          </button>
+
+          <div class="stage-hint" id="stageHint">YOUR NEXT PULL AWAITS</div>
+          <div class="opening-flash"></div>
+        </div>
+
+        <div class="open-controls">
+          <div class="price-label">
+            <small>PRICE PER PACK</small>
+            <strong>10 <span>credits</span></strong>
+          </div>
+          <button class="open-button" id="openButton">OPEN PACK <span>↗</span></button>
+        </div>
+
+        <p class="fine-print">Free demo · Virtual credits have no cash value.</p>
+      </section>
+
+      <aside class="odds-panel">
+        <div class="panel-top">
+          <span>02 / PULL ODDS</span>
+          <span class="info-dot">i</span>
+        </div>
+
+        <h2>What's in the vault?</h2>
+        <p class="muted">Your target odds for each card tier.</p>
+
+        <div class="odds-row">
+          <div class="tier-icon basic-icon">B</div>
+          <div class="tier-copy">
+            <strong>Basic</strong>
+            <span>Approx. $15 card</span>
+            <div class="odds-bar"><i class="basic-bar"></i></div>
+          </div>
+          <b>70%</b>
+        </div>
+
+        <div class="odds-row">
+          <div class="tier-icon mid-icon">M</div>
+          <div class="tier-copy">
+            <strong>Mid-tier</strong>
+            <span>$20–25 card</span>
+            <div class="odds-bar"><i class="mid-bar"></i></div>
+          </div>
+          <b>25%</b>
+        </div>
+
+        <div class="odds-row">
+          <div class="tier-icon elite-icon">✦</div>
+          <div class="tier-copy">
+            <strong>Elite</strong>
+            <span>Approx. $40 card</span>
+            <div class="odds-bar"><i class="elite-bar"></i></div>
+          </div>
+          <b>5%</b>
+        </div>
+
+        <div class="odds-note">
+          <span>ⓘ</span>
+          <p>Weighted demo odds. Card values are estimates, not guaranteed resale prices.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="reveal-section" id="revealSection" hidden>
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">PACK OPENED</div>
+          <h2>Your reveal</h2>
+        </div>
+        <span class="result-label">YOUR PULL</span>
+      </div>
+
+      <article class="reveal-card basic-result" id="revealCard">
+        <div class="card-shimmer"></div>
+        <div class="reveal-top">
+          <span>HAPPYSVAULT</span>
+          <span id="revealTier">BASIC</span>
+        </div>
+        <div class="reveal-emblem" id="revealSymbol">B</div>
+        <div class="reveal-info">
+          <h3 id="revealName">Basic Vault Find</h3>
+          <p id="revealValue">Approx. value: $15</p>
+        </div>
+        <div class="reveal-bottom">
+          <span>HV</span>
+          <span>MYSTERY PACK · SERIES 01</span>
+        </div>
+      </article>
+
+      <button class="secondary-button" id="againButton">
+        OPEN ANOTHER PACK <span>↗</span>
+      </button>
+    </section>
+
+    <section class="collection-section">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">THE COLLECTION</div>
+          <h2>Three tiers. One vault.</h2>
+        </div>
+        <span class="muted">20 planned cards</span>
+      </div>
+
+      <div class="collection-grid">
+        <article class="collection-card basic-collection">
+          <div class="collection-art">B</div>
+          <div>
+            <span class="tier-label basic-label">BASIC · 70%</span>
+            <h3>Basic cards</h3>
+            <p>12 cards · approx. $15 each</p>
+          </div>
+        </article>
+
+        <article class="collection-card mid-collection">
+          <div class="collection-art">M</div>
+          <div>
+            <span class="tier-label mid-label">MID-TIER · 25%</span>
+            <h3>Mid-tier cards</h3>
+            <p>6 cards · approx. $20–25 each</p>
+          </div>
+        </article>
+
+        <article class="collection-card elite-collection">
+          <div class="collection-art">✦</div>
+          <div>
+            <span class="tier-label elite-label">ELITE · 5%</span>
+            <h3>Elite cards</h3>
+            <p>2 cards · approx. $40 each</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>HappysVault Mystery Pack</span>
+    <span>Free demo · Virtual credits only</span>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

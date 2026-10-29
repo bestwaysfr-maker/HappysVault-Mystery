@@ -1,0 +1,618 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #080b11;
+  --panel: #111722;
+  --line: rgba(255,255,255,.09);
+  --text: #f3f5f8;
+  --muted: #8f9bad;
+  --grey: #bbc3ce;
+  --green: #68d6a2;
+  --gold: #e8c36f;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+.ambient {
+  position: fixed;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: .1;
+  pointer-events: none;
+  z-index: -1;
+}
+.ambient-a { background: #4977a9; top: 80px; left: -230px; }
+.ambient-b { background: #b78a36; right: -240px; top: 480px; }
+
+.topbar {
+  height: 82px;
+  padding: 0 max(5vw, 22px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  background: #080b11e8;
+  backdrop-filter: blur(16px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.brand-icon {
+  position: relative;
+  width: 43px;
+  height: 43px;
+  border: 1px solid #a98a4d;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #29303b, #0c1017);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px #d4ae4a1c, inset 0 0 12px #d4ae4a16;
+}
+.brand-icon span {
+  font: italic 700 24px Georgia, serif;
+  background: linear-gradient(#fff1bf, #c49a45);
+  color: transparent;
+  background-clip: text;
+}
+.brand-icon span + span { margin-left: -5px; }
+.brand-icon i {
+  position: absolute;
+  right: 2px;
+  top: 1px;
+  font-size: 10px;
+  color: #fff0b4;
+  font-style: normal;
+}
+.brand-name {
+  font: 700 17px 'Space Grotesk', sans-serif;
+  letter-spacing: -.5px;
+}
+.brand-name small {
+  display: block;
+  color: var(--gold);
+  font: 700 9px 'DM Sans', sans-serif;
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+.credit-pill {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: #111722;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+.credit-pill strong {
+  color: var(--text);
+  font-size: 14px;
+  letter-spacing: 0;
+}
+.credit-dot, .status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 10px var(--green);
+}
+
+main { max-width: 1120px; padding: 0 24px; margin: auto; }
+.hero { text-align: center; padding: 61px 0 35px; }
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  color: var(--gold);
+}
+.hero .eyebrow { justify-content: center; }
+.hero h1 {
+  font: 700 clamp(39px, 6vw, 65px)/1.02 'Space Grotesk', sans-serif;
+  letter-spacing: -3px;
+  margin: 18px 0 15px;
+}
+.hero h1 span { color: var(--gold); }
+.hero > p {
+  max-width: 540px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 20px;
+}
+.opening-panel, .odds-panel {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: linear-gradient(145deg, #151d29f5, #0e131df5);
+}
+.opening-panel { padding: 23px 25px 19px; overflow: hidden; }
+.panel-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #9aa7b9;
+  font-size: 9px;
+  letter-spacing: 1.6px;
+  font-weight: 700;
+}
+.demo-label, .result-label {
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: var(--green);
+  border: 1px solid #315b4b;
+  padding: 6px 8px;
+  border-radius: 5px;
+}
+
+.pack-stage {
+  min-height: 330px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  perspective: 900px;
+}
+.stage-glow {
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  background: #d4ad4b12;
+  filter: blur(35px);
+  border-radius: 50%;
+  transition: all .5s;
+}
+.pack {
+  position: relative;
+  width: 190px;
+  height: 245px;
+  border: 1px solid #d4b267;
+  border-radius: 12px;
+  color: #f3dca4;
+  background: linear-gradient(135deg, #343025, #121923 53%, #1c2a30);
+  box-shadow: 0 22px 50px #0008, inset 0 0 0 5px #0b1018, inset 0 0 0 6px #927543;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform .3s, filter .3s;
+  overflow: hidden;
+}
+.pack:before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid #d8b96a3d;
+  border-radius: 7px;
+  pointer-events: none;
+}
+.pack:after {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: -80%;
+  height: 260%;
+  width: 45%;
+  transform: rotate(28deg);
+  background: linear-gradient(90deg, transparent, #ffffff18, transparent);
+  animation: packShine 5s infinite;
+  pointer-events: none;
+}
+@keyframes packShine {
+  0%, 65% { left: -90%; }
+  100% { left: 150%; }
+}
+.pack:hover { transform: translateY(-5px) rotateY(-4deg); filter: brightness(1.12); }
+.pack-brand {
+  position: absolute;
+  top: 21px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2.6px;
+}
+.pack-emblem {
+  height: 76px;
+  width: 76px;
+  border: 1px solid #d7b66c;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 30% 25%, #3b4550, #111720 70%);
+  box-shadow: 0 0 17px #d6b66a2b, inset 0 0 10px #d6b66a1b;
+  position: relative;
+}
+.pack-emblem:before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid #d6b66a66;
+  border-radius: 50%;
+}
+.pack-emblem span {
+  font: italic 700 38px Georgia, serif;
+  background: linear-gradient(#fff3c6, #c59a45);
+  color: transparent;
+  background-clip: text;
+}
+.pack-emblem span + span { margin-left: -8px; }
+.pack-emblem i {
+  position: absolute;
+  right: 1px;
+  top: 2px;
+  font-style: normal;
+  color: #fff0b6;
+  font-size: 11px;
+}
+.pack-title {
+  font: 700 23px/.98 'Space Grotesk', sans-serif;
+  letter-spacing: 1px;
+  margin: 15px 0 12px;
+  text-shadow: 0 2px 10px #0008;
+}
+.pack-divider {
+  height: 1px;
+  width: 75px;
+  background: linear-gradient(90deg, transparent, #d9b86e, transparent);
+}
+.pack-subtitle { font-size: 6px; letter-spacing: 1.5px; margin-top: 12px; }
+.pack-bottom-mark {
+  position: absolute;
+  bottom: 17px;
+  font-size: 7px;
+  letter-spacing: 2px;
+  color: #a58b53;
+}
+
+.stage-hint {
+  margin-top: 17px;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: #8290a4;
+}
+.opening-flash {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #fff4c8;
+  filter: blur(35px);
+  opacity: 0;
+  pointer-events: none;
+}
+.pack-stage.is-opening .pack { animation: packOpen .85s cubic-bezier(.2,.8,.2,1) both; }
+.pack-stage.is-opening .stage-glow { background: #e8c36f45; transform: scale(1.55); }
+.pack-stage.is-opening .opening-flash { animation: flashPop .75s ease-out both; }
+@keyframes packOpen {
+  0% { transform: scale(1) rotate(0); filter: brightness(1); }
+  25% { transform: scale(1.08) rotate(-5deg); filter: brightness(1.5); }
+  50% { transform: scale(.92) rotate(5deg); }
+  75% { transform: scale(1.15); filter: brightness(1.8); }
+  100% { transform: scale(0) rotate(18deg); opacity: 0; }
+}
+@keyframes flashPop {
+  0% { opacity: 0; transform: scale(.2); }
+  45% { opacity: .75; transform: scale(1.1); }
+  100% { opacity: 0; transform: scale(1.7); }
+}
+.open-controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 2px; }
+.price-label small { display: block; font-size: 8px; color: #8592a5; letter-spacing: 1.5px; }
+.price-label strong { display: block; margin-top: 5px; font: 700 19px 'Space Grotesk', sans-serif; }
+.price-label strong span { font: 500 10px 'DM Sans', sans-serif; color: #98a5b7; }
+.open-button, .secondary-button {
+  border: 0;
+  border-radius: 9px;
+  background: linear-gradient(100deg, #f0d58e, #c6a052);
+  color: #18140b;
+  font: 700 11px 'DM Sans', sans-serif;
+  letter-spacing: .7px;
+  padding: 14px 17px;
+  cursor: pointer;
+  box-shadow: 0 7px 23px #d6ae4c1b;
+  transition: transform .2s, filter .2s;
+}
+.open-button:hover, .secondary-button:hover { transform: translateY(-2px); filter: brightness(1.07); }
+.open-button:disabled, .secondary-button:disabled { opacity: .6; cursor: wait; transform: none; }
+.open-button span, .secondary-button span { margin-left: 14px; font-size: 15px; }
+.fine-print { text-align: center; color: #77859a; font-size: 9px; margin: 17px 0 0; }
+
+.odds-panel { padding: 25px; }
+.info-dot {
+  width: 22px; height: 22px; border: 1px solid #586273;
+  border-radius: 50%; display: grid; place-items: center; color: #aeb8c7; font-size: 11px;
+}
+.odds-panel h2, .section-heading h2 {
+  font: 600 23px 'Space Grotesk', sans-serif;
+  letter-spacing: -.7px;
+  margin: 21px 0 7px;
+}
+.muted { color: var(--muted); font-size: 11px; line-height: 1.6; }
+.odds-row { display: grid; grid-template-columns: 39px 1fr 40px; align-items: center; gap: 11px; margin: 22px 0; }
+.tier-icon {
+  width: 38px; height: 42px; border-radius: 9px;
+  display: grid; place-items: center; font: 700 16px 'Space Grotesk', sans-serif; border: 1px solid;
+}
+.basic-icon { color: var(--grey); background: #252b34; border-color: #5b6572; }
+.mid-icon { color: var(--green); background: #16382e; border-color: #32775a; }
+.elite-icon { color: var(--gold); background: #3a2d16; border-color: #8b6b2d; }
+.tier-copy strong { display: block; font-size: 12px; }
+.tier-copy span { display: block; color: #8997aa; font-size: 10px; margin-top: 4px; }
+.odds-row > b { font: 600 14px 'Space Grotesk', sans-serif; text-align: right; }
+.odds-bar { height: 4px; background: #27303d; border-radius: 8px; overflow: hidden; margin-top: 10px; }
+.odds-bar i { height: 100%; display: block; border-radius: 8px; }
+.basic-bar { width: 70%; background: linear-gradient(90deg, #7b8490, #c4cbd3); }
+.mid-bar { width: 25%; background: linear-gradient(90deg, #328b65, #76e0ad); }
+.elite-bar { width: 5%; background: linear-gradient(90deg, #b48935, #f4d98e); }
+.odds-note { display: flex; gap: 9px; padding: 12px; background: #0b1119; border: 1px solid var(--line); border-radius: 9px; margin-top: 24px; color: var(--gold); }
+.odds-note p { margin: 0; color: #8795a8; font-size: 10px; line-height: 1.6; }
+
+.reveal-section { padding: 52px 0 8px; text-align: center; }
+.section-heading { display: flex; align-items: center; justify-content: space-between; gap: 15px; text-align: left; }
+.section-heading h2 { margin: 8px 0 0; }
+.result-label { font-size: 8px; letter-spacing: 1px; color: var(--green); border: 1px solid #315b4b; padding: 6px 8px; border-radius: 5px; }
+.reveal-card {
+  --tier-color: var(--grey);
+  position: relative;
+  overflow: hidden;
+  max-width: 340px;
+  min-height: 370px;
+  margin: 25px auto 20px;
+  padding: 22px;
+  border: 1px solid #606b79;
+  border-radius: 17px;
+  background: linear-gradient(145deg, #2a3039, #111720 70%);
+  box-shadow: 0 20px 55px #0008;
+  animation: cardReveal .7s cubic-bezier(.15,.85,.25,1) both;
+}
+@keyframes cardReveal {
+  0% { opacity: 0; transform: translateY(40px) scale(.7) rotateY(35deg); }
+  65% { opacity: 1; transform: translateY(-5px) scale(1.03) rotateY(-4deg); }
+  100% { transform: translateY(0) scale(1) rotateY(0); }
+}
+.reveal-card.mid-result { --tier-color: var(--green); border-color: #3d9b73; background: linear-gradient(145deg, #164532, #111a1b 70%); box-shadow: 0 0 40px #68d6a21a; }
+.reveal-card.elite-result { --tier-color: var(--gold); border-color: #bd974b; background: linear-gradient(145deg, #4b3919, #151923 70%); box-shadow: 0 0 45px #e8c36f2a; }
+.card-shimmer { position: absolute; top: -60%; left: -60%; width: 60%; height: 220%; background: linear-gradient(90deg, transparent, #ffffff12, transparent); transform: rotate(25deg); animation: cardShine 3.5s infinite; pointer-events: none; }
+@keyframes cardShine { 0%,60% { left: -70%; } 100% { left: 140%; } }
+.reveal-top, .reveal-bottom { display: flex; align-items: center; justify-content: space-between; font-size: 8px; letter-spacing: 1.6px; color: var(--tier-color); font-weight: 700; }
+.reveal-emblem { height: 145px; display: grid; place-items: center; font: 700 94px 'Space Grotesk', sans-serif; color: var(--tier-color); text-shadow: 0 0 28px #ffffff22; }
+.reveal-info h3 { font: 600 20px 'Space Grotesk', sans-serif; margin: 0 0 8px; }
+.reveal-info p { font-size: 12px; color: #aeb9c9; margin: 0; }
+.reveal-bottom { border-top: 1px solid #ffffff1b; margin-top: 24px; padding-top: 14px; color: #8794a6; }
+.secondary-button { margin-bottom: 5px; }
+
+.collection-section { padding: 60px 0 65px; }
+.collection-section .section-heading h2 { margin-top: 8px; }
+.collection-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; margin-top: 21px; }
+.collection-card { display: flex; align-items: center; gap: 13px; padding: 14px; border: 1px solid var(--line); border-radius: 13px; background: #111722; }
+.collection-art { width: 64px; height: 82px; flex-shrink: 0; display: grid; place-items: center; border: 1px solid; border-radius: 8px; font: 700 30px 'Space Grotesk', sans-serif; }
+.basic-collection .collection-art { color: var(--grey); border-color: #626c78; background: linear-gradient(145deg, #343b45, #141922); }
+.mid-collection .collection-art { color: var(--green); border-color: #39865e; background: linear-gradient(145deg, #1b5238, #101a18); }
+.elite-collection .collection-art { color: var(--gold); border-color: #997633; background: linear-gradient(145deg, #5b431b, #171923); }
+.tier-label { font-size: 8px; font-weight: 700; letter-spacing: .5px; }
+.basic-label { color: var(--grey); }.mid-label { color: var(--green); }.elite-label { color: var(--gold); }
+.collection-card h3 { font: 600 13px 'Space Grotesk', sans-serif; margin: 8px 0 5px; }
+.collection-card p { font-size: 9px; color: #8d9aac; margin: 0; }
+
+footer { border-top: 1px solid var(--line); padding: 22px max(5vw,22px); display: flex; justify-content: space-between; gap: 12px; color: #778498; font-size: 10px; }
+.toast { position: fixed; bottom: 22px; left: 50%; transform: translate(-50%,18px); opacity: 0; background: #202a38; border: 1px solid #3a4657; color: #eef4fb; padding: 12px 18px; border-radius: 10px; font-size: 12px; transition: .25s; pointer-events: none; z-index: 20; }
+.toast.show { opacity: 1; transform: translate(-50%,0); }
+
+@media(max-width:780px) {
+  .hero { padding-top: 47px; }
+  .main-grid { grid-template-columns: 1fr; }
+  .opening-panel { min-height: 0; }
+  .odds-panel { min-height: 0; }
+  .collection-grid { grid-template-columns: 1fr; }
+  .collection-card { padding: 13px; }
+  .collection-section { padding-top: 45px; }
+}
+@media(max-width:430px) {
+  .topbar { padding: 0 14px; }
+  .brand-name { font-size: 14px; }
+  .credit-pill { padding: 9px 10px; font-size: 8px; gap: 6px; }
+  main { padding: 0 14px; }
+  .hero h1 { letter-spacing: -2px; }
+  .opening-panel, .odds-panel { padding: 19px; }
+  .open-button { padding: 13px 12px; }
+  .pack-stage { min-height: 310px; }
+  footer { padding: 20px 14px; flex-direction: column; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; }
+}
+'''
+
+# Fix HTML references by using correct class names from CSS
+index_html = index_html.replace('<div class="stage-glow"></div>', '<div class="stage-glow"></div>') # harmless
+# The CSS uses stage-glow/opening-flash and HTML currently includes them? add both.
+index_html = index_html.replace('<div class="pack-stage" id="packStage">\n          <div class="stage-glow"></div>', '<div class="pack-stage" id="packStage">\n          <div class="stage-glow"></div>')
+
+# Use the final coherent stylesheet with helper styles and animation classes.
+style_css = style_css.replace('.pack-stage {', '.pack-stage {')
+# Include .pack-brand/title/divider etc styling that HTML relies on
+style_css = style_css.replace('.pack-brand {', '.pack-brand {') if '.pack-brand {' in style_css else style_css
+# The CSS above intentionally has complete core styles; add pack contents and opening state styles.
+extra_css = r'''
+.pack-brand{position:absolute;top:21px;font-size:8px;font-weight:700;letter-spacing:2.6px}
+.pack-title{font:700 23px/.98 'Space Grotesk',sans-serif;letter-spacing:1px;margin:15px 0 12px;text-shadow:0 2px 10px #0008}
+.pack-divider{height:1px;width:75px;background:linear-gradient(90deg,transparent,#d9b86e,transparent)}
+.pack-subtitle{font-size:6px;letter-spacing:1.5px;margin-top:12px}
+.pack-bottom-mark{position:absolute;bottom:17px;font-size:7px;letter-spacing:2px;color:#a58b53}
+.stage-glow{position:absolute;width:210px;height:210px;background:#d4ad4b12;filter:blur(35px);border-radius:50%;transition:all .5s}
+.opening-flash{position:absolute;width:150px;height:150px;border-radius:50%;background:#fff4c8;filter:blur(35px);opacity:0;pointer-events:none}
+.pack-stage.is-opening .pack{animation:packOpen .85s cubic-bezier(.2,.8,.2,1) both}
+.pack-stage.is-opening .stage-glow{background:#e8c36f45;transform:scale(1.55)}
+.pack-stage.is-opening .opening-flash{animation:flashPop .75s ease-out both}
+@keyframes packOpen{0%{transform:scale(1) rotate(0);filter:brightness(1)}25%{transform:scale(1.08) rotate(-5deg);filter:brightness(1.5)}50%{transform:scale(.92) rotate(5deg)}75%{transform:scale(1.15);filter:brightness(1.8)}100%{transform:scale(0) rotate(18deg);opacity:0}}
+@keyframes flashPop{0%{opacity:0;transform:scale(.2)}45%{opacity:.75;transform:scale(1.1)}100%{opacity:0;transform:scale(1.7)}}
+'''
+# HTML has stage-glow and opening-flash but missing stage hint etc fine. Add pack content styles to existing CSS.
+style_css += extra_css
+
+# Ensure html has stage glow + flash, and use exact tier styles / all expected IDs.
+# The index currently uses classes that are all present except pack-stage styles, now included.
+script_js = r'''// HappysVault Mystery Pack — free demo using virtual credits only.
+let credits = 100;
+let isOpening = false;
+
+const creditsEl = document.getElementById("credits");
+const packButton = document.getElementById("packButton");
+const openButton = document.getElementById("openButton");
+const packStage = document.getElementById("packStage");
+const stageHint = document.getElementById("stageHint");
+const revealSection = document.getElementById("revealSection");
+const revealCard = document.getElementById("revealCard");
+const toast = document.getElementById("toast");
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  window.setTimeout(() => toast.classList.remove("show"), 2400);
+}
+
+function choosePull() {
+  const roll = Math.random() * 100;
+
+  if (roll < 70) {
+    const number = Math.floor(Math.random() * 12) + 1;
+    return {
+      tier: "BASIC",
+      name: `Basic Vault Find #${String(number).padStart(2, "0")}`,
+      value: "Approx. value: $15",
+      symbol: "B",
+      style: "basic-result"
+    };
+  }
+
+  if (roll < 95) {
+    const number = Math.floor(Math.random() * 6) + 1;
+    const value = Math.random() < 0.5 ? "$20" : "$25";
+    return {
+      tier: "MID-TIER",
+      name: `Mid-Tier Vault Find #${String(number).padStart(2, "0")}`,
+      value: `Approx. value: ${value}`,
+      symbol: "M",
+      style: "mid-result"
+    };
+  }
+
+  const number = Math.floor(Math.random() * 2) + 1;
+  return {
+    tier: "ELITE",
+    name: `Elite Vault Find #${String(number).padStart(2, "0")}`,
+    value: "Approx. value: $40",
+    symbol: "✦",
+    style: "elite-result"
+  };
+}
+
+function openPack() {
+  if (isOpening) return;
+
+  if (credits < 10) {
+    showToast("You're out of demo credits. Refresh to restart.");
+    return;
+  }
+
+  isOpening = true;
+  credits -= 10;
+  creditsEl.textContent = credits;
+  openButton.disabled = true;
+  packButton.disabled = true;
+  openButton.innerHTML = "OPENING...";
+  stageHint.textContent = "UNSEALING THE VAULT...";
+  revealSection.hidden = true;
+
+  packStage.classList.remove("is-opening");
+  void packStage.offsetWidth;
+  packStage.classList.add("is-opening");
+
+  window.setTimeout(() => {
+    const pull = choosePull();
+
+    document.getElementById("revealTier").textContent = pull.tier;
+    document.getElementById("revealName").textContent = pull.name;
+    document.getElementById("revealValue").textContent = pull.value;
+    document.getElementById("revealSymbol").textContent = pull.symbol;
+
+    revealCard.className = `reveal-card ${pull.style}`;
+    revealSection.hidden = false;
+    revealCard.style.animation = "none";
+    void revealCard.offsetWidth;
+    revealCard.style.animation = "";
+
+    stageHint.textContent = "PULL REVEALED";
+    openButton.disabled = false;
+    packButton.disabled = false;
+    openButton.innerHTML = 'OPEN ANOTHER PACK <span>↗</span>';
+    isOpening = false;
+    revealSection.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, 850);
+}
+
+openButton.addEventListener("click", openPack);
+packButton.addEventListener("click", openPack);
+document.getElementById("againButton").addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  openPack();
+});
+'''
+
+# Use matching CSS for HTML pack elements and missing visual details.
+style_css += r'''
+/* Final layout helpers */
+.pack-brand{position:absolute;top:21px;font-size:8px;font-weight:700;letter-spacing:2.6px}
+.pack-title{font:700 23px/.98 'Space Grotesk',sans-serif;letter-spacing:1px;margin:15px 0 12px;text-shadow:0 2px 10px #0008}
+.pack-divider{height:1px;width:75px;background:linear-gradient(90deg,transparent,#d9b86e,transparent)}
+.pack-subtitle{font-size:6px;letter-spacing:1.5px;margin-top:12px}
+.pack-bottom-mark{position:absolute;bottom:17px;font-size:7px;letter-spacing:2px;color:#a58b53}
+.stage-glow{position:absolute;width:210px;height:210px;background:#d4ad4b12;filter:blur(35px);border-radius:50%;transition:all .5s}
+.opening-flash{position:absolute;width:150px;height:150px;border-radius:50%;background:#fff4c8;filter:blur(35px);opacity:0;pointer-events:none}
+.pack-stage.is-opening .pack{animation:packOpen .85s cubic-bezier(.2,.8,.2,1) both}
+.pack-stage.is-opening .stage-glow{background:#e8c36f45;transform:scale(1.55)}
+.pack-stage.is-opening .opening-flash{animation:flashPop .75s ease-out both}
+@keyframes packOpen{0%{transform:scale(1) rotate(0);filter:brightness(1)}25%{transform:scale(1.08) rotate(-5deg);filter:brightness(1.5)}50%{transform:scale(.92) rotate(5deg)}75%{transform:scale(1.15);filter:brightness(1.8)}100%{transform:scale(0) rotate(18deg);opacity:0}}
+@keyframes flashPop{0%{opacity:0;transform:scale(.2)}45%{opacity:.75;transform:scale(1.1)}100%{opacity:0;transform:scale(1.7)}}
+'''
+
+for filename, content in [("index.html", index_html), ("style.css", style_css), ("script.js", script_js)]:
+    with open(os.path.join(base, filename), "w", encoding="utf-8") as f:
+        f.write(content)
+
+zip_path = "/mnt/data/HappysVault_Mystery_Pack_New_Code.zip"
+with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+    for filename in ["index.html", "style.css", "script.js"]:
+        zf.write(os.path.join(base, filename), arcname=f"HappysVault_Mystery_Pack/{filename}")
+
+print("Created the three updated website files.")
