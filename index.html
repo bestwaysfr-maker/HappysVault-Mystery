@@ -2,194 +2,608 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HappysVault Mystery Pack</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#080d19">
+    <meta name="description" content="Happy's Vault - Open Pokémon packs, discover cards, and build your collection.">
+
+    <title>Happy's Vault</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
+
 <body>
-  <div class="ambient ambient-a"></div>
-  <div class="ambient ambient-b"></div>
 
-  <header class="topbar">
-    <a class="brand" href="#">
-      <div class="brand-icon"><span>H</span><span>V</span><i>✦</i></div>
-      <div class="brand-name">HappysVault<small>MYSTERY PACKS</small></div>
-    </a>
-    <div class="credit-pill">
-      <span class="credit-dot"></span>
-      <span>DEMO CREDITS</span>
-      <strong id="credits">100</strong>
+<header class="header">
+
+    <div class="logo">
+        HAPPY'S <span>VAULT</span>
     </div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="eyebrow"><span class="status-dot"></span> THE VAULT IS OPEN</div>
-      <h1>Find your next<br><span>great pull.</span></h1>
-      <p>Open a mystery pack and discover what's inside. A premium card-opening experience using virtual credits.</p>
-    </section>
+    <nav aria-label="Main navigation">
+        <button class="nav-btn active" data-tab="store" type="button">
+            Store
+        </button>
 
-    <section class="main-grid">
-      <section class="opening-panel">
-        <div class="panel-top">
-          <span>01 / MYSTERY PACK</span>
-          <span class="demo-label">DEMO MODE</span>
+        <button class="nav-btn" data-tab="inventory" type="button">
+            Inventory
+        </button>
+
+        <button class="nav-btn" data-tab="codes" type="button">
+            Codes
+        </button>
+    </nav>
+
+    <div class="header-right">
+
+        <div class="credits">
+            <span>✦</span>
+            <span id="credits">500</span>
         </div>
 
-        <div class="pack-stage" id="packStage">
-          <div class="stage-glow"></div>
+        <button
+            class="account-toggle"
+            id="accountToggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="hvAccountPanel"
+        >
+            ACCOUNT
+        </button>
 
-          <button class="pack" id="packButton" aria-label="Open mystery pack">
-            <div class="pack-brand">HAPPYSVAULT</div>
-            <div class="pack-emblem">
-              <span>H</span><span>V</span><i>✦</i>
+        <section
+            id="hvAccountPanel"
+            class="account-panel"
+            aria-label="Account panel"
+        >
+
+            <h3>Happy's Vault Account</h3>
+
+            <div id="hvLoggedOut">
+
+                <input
+                    id="hvUsername"
+                    type="text"
+                    placeholder="Username (new accounts)"
+                    maxlength="20"
+                    autocomplete="username"
+                    aria-label="Username"
+                >
+
+                <input
+                    id="hvEmail"
+                    type="email"
+                    placeholder="Email address"
+                    autocomplete="email"
+                    aria-label="Email address"
+                >
+
+                <input
+                    id="hvPassword"
+                    type="password"
+                    placeholder="Password"
+                    autocomplete="current-password"
+                    aria-label="Password"
+                >
+
+                <div>
+                    <button id="hvSignupButton" type="button">
+                        Create Account
+                    </button>
+
+                    <button id="hvLoginButton" type="button">
+                        Log In
+                    </button>
+                </div>
+
+                <p>Your email and password are private.</p>
+
             </div>
-            <div class="pack-title">MYSTERY<br>PACK</div>
-            <div class="pack-divider"></div>
-            <div class="pack-subtitle">ONE CARD. ONE SURPRISE.</div>
-            <div class="pack-bottom-mark">HV · SERIES 01</div>
-          </button>
 
-          <div class="stage-hint" id="stageHint">YOUR NEXT PULL AWAITS</div>
-          <div class="opening-flash"></div>
+            <div id="hvLoggedIn" style="display:none;">
+
+                <p>
+                    Welcome,
+                    <span id="hvAccountWelcome"></span>!
+                </p>
+
+                <button id="hvLogoutButton" type="button">
+                    Log Out
+                </button>
+
+            </div>
+
+            <p id="hvAccountMessage" aria-live="polite"></p>
+
+        </section>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- STORE -->
+
+    <section id="store" class="tab active">
+
+        <div class="hero">
+
+            <p class="eyebrow">WELCOME TO</p>
+
+            <h1>
+                HAPPY'S <span>VAULT</span>
+            </h1>
+
+            <p>
+                Open packs. Discover inventory. Build your collection.
+            </p>
+
         </div>
 
-        <div class="open-controls">
-          <div class="price-label">
-            <small>PRICE PER PACK</small>
-            <strong>10 <span>credits</span></strong>
-          </div>
-          <button class="open-button" id="openButton">OPEN PACK <span>↗</span></button>
+        <h2 class="section-title">
+            AVAILABLE PACKS
+        </h2>
+
+        <div class="pack-grid">
+
+            <!-- CLASSIC PACK -->
+
+            <article class="pack-card">
+
+                <div class="pack-art classic-pack">
+
+                    <div class="pack-shine"></div>
+
+                    <div class="pack-brand">
+                        HAPPY'S VAULT
+                    </div>
+
+                    <div class="pack-title">
+                        CLASSIC
+                    </div>
+
+                    <div class="pack-subtitle">
+                        COLLECTOR SERIES
+                    </div>
+
+                    <div class="pack-symbol">
+                        ✦
+                    </div>
+
+                </div>
+
+                <h3>Classic Pack</h3>
+
+                <p>20 Credits</p>
+
+                <button
+                    class="open-btn"
+                    type="button"
+                    onclick="showPack('classic')"
+                >
+                    VIEW PACK
+                </button>
+
+            </article>
+
+
+            <!-- NEON PACK -->
+
+            <article class="pack-card">
+
+                <div class="pack-art neon-pack">
+
+                    <div class="pack-shine"></div>
+
+                    <div class="pack-brand">
+                        HAPPY'S VAULT
+                    </div>
+
+                    <div class="pack-title">
+                        NEON
+                    </div>
+
+                    <div class="pack-subtitle">
+                        ELECTRIC SERIES
+                    </div>
+
+                    <div class="pack-symbol">
+                        ⚡
+                    </div>
+
+                </div>
+
+                <h3>Neon Pack</h3>
+
+                <p>50 Credits</p>
+
+                <button
+                    class="open-btn"
+                    type="button"
+                    onclick="showPack('neon')"
+                >
+                    VIEW PACK
+                </button>
+
+            </article>
+
+
+            <!-- GALAXY PACK -->
+
+            <article class="pack-card">
+
+                <div class="pack-art galaxy-pack">
+
+                    <div class="pack-shine"></div>
+
+                    <div class="pack-brand">
+                        HAPPY'S VAULT
+                    </div>
+
+                    <div class="pack-title">
+                        GALAXY
+                    </div>
+
+                    <div class="pack-subtitle">
+                        COSMIC SERIES
+                    </div>
+
+                    <div class="pack-symbol">
+                        ☄
+                    </div>
+
+                </div>
+
+                <h3>Galaxy Pack</h3>
+
+                <p>150 Credits</p>
+
+                <button
+                    class="open-btn"
+                    type="button"
+                    onclick="showPack('galaxy')"
+                >
+                    VIEW PACK
+                </button>
+
+            </article>
+
         </div>
 
-        <p class="fine-print">Free demo · Virtual credits have no cash value.</p>
-      </section>
-
-      <aside class="odds-panel">
-        <div class="panel-top">
-          <span>02 / PULL ODDS</span>
-          <span class="info-dot">i</span>
-        </div>
-
-        <h2>What's in the vault?</h2>
-        <p class="muted">Your target odds for each card tier.</p>
-
-        <div class="odds-row">
-          <div class="tier-icon basic-icon">B</div>
-          <div class="tier-copy">
-            <strong>Basic</strong>
-            <span>Approx. $15 card</span>
-            <div class="odds-bar"><i class="basic-bar"></i></div>
-          </div>
-          <b>70%</b>
-        </div>
-
-        <div class="odds-row">
-          <div class="tier-icon mid-icon">M</div>
-          <div class="tier-copy">
-            <strong>Mid-tier</strong>
-            <span>$20–25 card</span>
-            <div class="odds-bar"><i class="mid-bar"></i></div>
-          </div>
-          <b>25%</b>
-        </div>
-
-        <div class="odds-row">
-          <div class="tier-icon elite-icon">✦</div>
-          <div class="tier-copy">
-            <strong>Elite</strong>
-            <span>Approx. $40 card</span>
-            <div class="odds-bar"><i class="elite-bar"></i></div>
-          </div>
-          <b>5%</b>
-        </div>
-
-        <div class="odds-note">
-          <span>ⓘ</span>
-          <p>Weighted demo odds. Card values are estimates, not guaranteed resale prices.</p>
-        </div>
-      </aside>
     </section>
 
-    <section class="reveal-section" id="revealSection" hidden>
-      <div class="section-heading">
-        <div>
-          <div class="eyebrow">PACK OPENED</div>
-          <h2>Your reveal</h2>
-        </div>
-        <span class="result-label">YOUR PULL</span>
-      </div>
 
-      <article class="reveal-card basic-result" id="revealCard">
-        <div class="card-shimmer"></div>
-        <div class="reveal-top">
-          <span>HAPPYSVAULT</span>
-          <span id="revealTier">BASIC</span>
-        </div>
-        <div class="reveal-emblem" id="revealSymbol">B</div>
-        <div class="reveal-info">
-          <h3 id="revealName">Basic Vault Find</h3>
-          <p id="revealValue">Approx. value: $15</p>
-        </div>
-        <div class="reveal-bottom">
-          <span>HV</span>
-          <span>MYSTERY PACK · SERIES 01</span>
-        </div>
-      </article>
+    <!-- INVENTORY -->
 
-      <button class="secondary-button" id="againButton">
-        OPEN ANOTHER PACK <span>↗</span>
-      </button>
+    <section id="inventory" class="tab">
+
+        <div class="page-heading">
+
+            <p class="eyebrow">
+                YOUR COLLECTION
+            </p>
+
+            <h1>
+                MY <span>CARDS</span>
+            </h1>
+
+            <p>
+                Every card you have discovered.
+            </p>
+
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <span>Total Cards</span>
+
+                <strong id="totalCards">
+                    0
+                </strong>
+
+            </div>
+
+            <div class="stat-card">
+
+                <span>Collection Value</span>
+
+                <strong id="collectionValue">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+        <div class="collection-actions">
+
+            <button
+                class="secondary-btn"
+                type="button"
+                onclick="sellAllBasic()"
+            >
+                SELL ALL BASIC
+            </button>
+
+        </div>
+
+        <div
+            id="collection"
+            class="collection-grid"
+        ></div>
+
+        <p
+            id="emptyMessage"
+            class="empty-message"
+        >
+            You haven't collected any cards yet.
+            Open a pack to get started!
+        </p>
+
     </section>
 
-    <section class="collection-section">
-      <div class="section-heading">
-        <div>
-          <div class="eyebrow">THE COLLECTION</div>
-          <h2>Three tiers. One vault.</h2>
+
+    <!-- CODES -->
+
+    <section id="codes" class="tab">
+
+        <div class="page-heading">
+
+            <p class="eyebrow">
+                SPECIAL REWARDS
+            </p>
+
+            <h1>
+                REDEEM <span>CODES</span>
+            </h1>
+
+            <p>
+                Enter a code to claim free credits.
+            </p>
+
         </div>
-        <span class="muted">20 planned cards</span>
-      </div>
 
-      <div class="collection-grid">
-        <article class="collection-card basic-collection">
-          <div class="collection-art">B</div>
-          <div>
-            <span class="tier-label basic-label">BASIC · 70%</span>
-            <h3>Basic cards</h3>
-            <p>12 cards · approx. $15 each</p>
-          </div>
-        </article>
+        <div class="code-box">
 
-        <article class="collection-card mid-collection">
-          <div class="collection-art">M</div>
-          <div>
-            <span class="tier-label mid-label">MID-TIER · 25%</span>
-            <h3>Mid-tier cards</h3>
-            <p>6 cards · approx. $20–25 each</p>
-          </div>
-        </article>
+            <div class="code-icon">
+                ✦
+            </div>
 
-        <article class="collection-card elite-collection">
-          <div class="collection-art">✦</div>
-          <div>
-            <span class="tier-label elite-label">ELITE · 5%</span>
-            <h3>Elite cards</h3>
-            <p>2 cards · approx. $40 each</p>
-          </div>
-        </article>
-      </div>
+            <h2>
+                ENTER YOUR CODE
+            </h2>
+
+            <p>
+                Redeem a special Happy's Vault reward.
+            </p>
+
+            <input
+                type="text"
+                id="codeInput"
+                placeholder="Enter code here..."
+                autocomplete="off"
+                aria-label="Promo code"
+            >
+
+            <button
+                class="open-btn"
+                type="button"
+                onclick="redeemCode()"
+            >
+                REDEEM CODE
+            </button>
+
+            <p
+                id="codeMessage"
+                class="code-message"
+                aria-live="polite"
+            ></p>
+
+        </div>
+
     </section>
-  </main>
 
-  <footer>
-    <span>HappysVault Mystery Pack</span>
-    <span>Free demo · Virtual credits only</span>
-  </footer>
+</main>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="script.js"></script>
+<!-- PACK POPUP -->
+
+<div
+    id="packModal"
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalName"
+>
+
+    <div class="modal-content">
+
+        <button
+            class="close-btn"
+            type="button"
+            onclick="closePack()"
+            aria-label="Close pack window"
+        >
+            ✕
+        </button>
+
+        <div
+            id="modalPackArt"
+            class="pack-art modal-pack"
+        >
+
+            <div class="pack-shine"></div>
+
+            <div class="pack-brand">
+                HAPPY'S VAULT
+            </div>
+
+            <div id="modalPackTitle" class="pack-title">
+                CLASSIC
+            </div>
+
+            <div class="pack-subtitle">
+                COLLECTOR SERIES
+            </div>
+
+            <div class="pack-symbol">
+                ✦
+            </div>
+
+        </div>
+
+        <h2 id="modalName">
+            Classic Pack
+        </h2>
+
+        <p id="modalPrice">
+            20 Credits per pack
+        </p>
+
+
+        <!-- DROP RATES -->
+
+        <div class="odds">
+
+            <h3>
+                DROP RATES
+            </h3>
+
+            <p>
+                <span class="basic-text">Basic</span>
+                <span id="basicOdds">70%</span>
+            </p>
+
+            <p>
+                <span class="mid-text">Mid</span>
+                <span id="midOdds">25%</span>
+            </p>
+
+            <p>
+                <span class="elite-text">Elite</span>
+                <span id="eliteOdds">5%</span>
+            </p>
+
+        </div>
+
+
+        <!-- QUANTITY -->
+
+        <label for="packQuantity">
+            NUMBER OF PACKS
+        </label>
+
+        <div class="quantity-row">
+
+            <input
+                type="range"
+                id="packQuantity"
+                min="1"
+                max="10"
+                value="1"
+            >
+
+            <strong id="quantityNumber">
+                1
+            </strong>
+
+        </div>
+
+
+        <!-- TOTAL COST -->
+
+        <p class="total-cost">
+
+            Total:
+
+            <strong id="totalCost">
+                20
+            </strong>
+
+            Credits
+
+        </p>
+
+
+        <button
+            id="openPackBtn"
+            class="open-btn"
+            type="button"
+            onclick="openPacks()"
+        >
+            OPEN PACKS
+        </button>
+
+        <p
+            id="packMessage"
+            class="code-message"
+            aria-live="polite"
+        ></p>
+
+    </div>
+
+</div>
+
+
+<!-- RESULTS POPUP -->
+
+<div
+    id="resultsModal"
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="resultsTitle"
+>
+
+    <div class="results-content">
+
+        <button
+            class="close-btn"
+            type="button"
+            onclick="closeResults()"
+            aria-label="Close results"
+        >
+            ✕
+        </button>
+
+        <p class="eyebrow">
+            PACK OPENED
+        </p>
+
+        <h2 id="resultsTitle">
+            YOUR <span>CARDS</span>
+        </h2>
+
+        <div
+            id="newCards"
+            class="new-cards-grid"
+        ></div>
+
+        <button
+            class="open-btn"
+            type="button"
+            onclick="closeResults()"
+        >
+            CONTINUE
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- SCRIPTS -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+
 </body>
 </html>
